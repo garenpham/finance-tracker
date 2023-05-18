@@ -1,6 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
-import { dollar, calendar, comment, trash } from '../../utils/Icons';
+import {
+	dollar,
+	calendar,
+	comment,
+	trash,
+	money,
+	freelance,
+	stocks,
+	users,
+	bitcoin,
+	card,
+	yt,
+	piggy,
+	book,
+	medical,
+	food,
+	takeaway,
+	tv,
+	clothing,
+	circle,
+} from '../../utils/Icons';
 import Button from '../Button/Button';
 
 type Props = {
@@ -10,9 +30,9 @@ type Props = {
 	date: string;
 	category: string;
 	description: string;
-	deleteItem?: (id: string) => void;
-	indicatorColor?: string;
-	type?: string;
+	deleteItem: (id: string) => Promise<void>;
+	indicatorColor: string;
+	type: string;
 };
 
 function IncomeItem({
@@ -26,14 +46,64 @@ function IncomeItem({
 	indicatorColor,
 	type,
 }: Props) {
+	const categoryIcon = () => {
+		switch (category) {
+			case 'salary':
+				return money;
+			case 'freelancing':
+				return freelance;
+			case 'investments':
+				return stocks;
+			case 'stocks':
+				return users;
+			case 'bitcoin':
+				return bitcoin;
+			case 'bank':
+				return card;
+			case 'youtube':
+				return yt;
+			case 'other':
+				return piggy;
+			default:
+				return '';
+		}
+	};
+
+	const expenseCatIcon = () => {
+		switch (category) {
+			case 'education':
+				return book;
+			case 'groceries':
+				return food;
+			case 'health':
+				return medical;
+			case 'subscriptions':
+				return tv;
+			case 'takeaways':
+				return takeaway;
+			case 'clothing':
+				return clothing;
+			case 'travelling':
+				return freelance;
+			case 'other':
+				return circle;
+			default:
+				return '';
+		}
+	};
+
 	return (
 		<IncomeItemStyled indicator={indicatorColor}>
-			<div className="icon"></div>
+			<div className="icon">
+				{type === 'expense' ? expenseCatIcon() : categoryIcon()}
+			</div>
 			<div className="content">
 				<h5>{title}</h5>
 				<div className="inner-content">
 					<div className="text">
-						<p>{dollar} 45</p>
+						<p>
+							{dollar} {amount}
+						</p>
 						<p>
 							{calendar} {date}
 						</p>
@@ -44,7 +114,6 @@ function IncomeItem({
 					</div>
 					<div className="btn-con">
 						<Button
-							name={'Delete Income'}
 							icon={trash}
 							btnPad={'1rem'}
 							btnRad={'50%'}
@@ -52,6 +121,7 @@ function IncomeItem({
 							color={'#fff'}
 							iColor={'#fff'}
 							hColor={'var(--color-green)'}
+							onClick={() => deleteItem(id)}
 						/>
 					</div>
 				</div>
@@ -120,6 +190,11 @@ const IncomeItemStyled = styled.div<StyledProps>`
 				align-items: center;
 				gap: 1.5rem;
 				p {
+					display: flex;
+					align-items: center;
+					gap: 0.5rem;
+					color: var(--primary-color);
+					opacity: 0.8;
 				}
 			}
 		}

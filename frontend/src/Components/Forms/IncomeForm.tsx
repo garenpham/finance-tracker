@@ -16,7 +16,7 @@ export interface InputStateType {
 	description: string;
 }
 
-function Form({}: Props) {
+function IncomeForm({}: Props) {
 	const { addIncome } = useGlobalContext();
 
 	const [inputState, setInputState] = useState<InputStateType>({
@@ -46,14 +46,13 @@ function Form({}: Props) {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
 		if (addIncome) {
 			addIncome(inputState);
 		}
 	};
 
 	return (
-		<FormStyled onSubmit={handleSubmit}>
+		<IncomeFormStyled onSubmit={handleSubmit}>
 			<div className="input-control">
 				<input
 					type="text"
@@ -126,11 +125,11 @@ function Form({}: Props) {
 					color={'#fff'}
 				/>
 			</div>
-		</FormStyled>
+		</IncomeFormStyled>
 	);
 }
 
-const FormStyled = styled.form`
+const IncomeFormStyled = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
@@ -160,12 +159,12 @@ const FormStyled = styled.form`
 
 	.selects {
 		display: flex;
-		justify-content: flex-start;
+		justify-content: flex-end;
 		select {
 			color: var(--primary-color3);
 			&:focus,
 			&:active {
-				color: var(--primary-color5);
+				color: var(--primary-color);
 			}
 		}
 	}
@@ -180,4 +179,4 @@ const FormStyled = styled.form`
 	}
 `;
 
-export default Form;
+export default IncomeForm;

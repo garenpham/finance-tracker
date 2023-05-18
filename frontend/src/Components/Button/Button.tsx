@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 type Props = {
-	name: string;
+	name?: string;
 	icon: JSX.Element;
 	onClick?: () => void;
 	bg: string;
@@ -42,6 +42,7 @@ function Button({
 const ButtonStyled = styled.button`
 	outline: none;
 	border: none;
+	font-size: inherit;
 	font-family: inherit;
 	display: flex;
 	align-items: center;
