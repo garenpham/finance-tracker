@@ -37,9 +37,35 @@ function Chart({}: Props) {
 			const { date } = income;
 			return dateFormat(date);
 		}),
+		datasets: [
+			{
+				label: 'Income',
+				data: [
+					...incomes.map((income) => {
+						const { amount } = income;
+						return amount;
+					}),
+				],
+				backgroundColor: 'green',
+			},
+			{
+				label: 'Expenses',
+				data: [
+					...expenses.map((expense) => {
+						const { amount } = expense;
+						return amount;
+					}),
+				],
+				backgroundColor: 'red',
+			},
+		],
 	};
 
-	return <ChartStyled>{/* <Line /> */}</ChartStyled>;
+	return (
+		<ChartStyled>
+			<Line data={data} />
+		</ChartStyled>
+	);
 }
 
 const ChartStyled = styled.div`
