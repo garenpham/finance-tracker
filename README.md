@@ -3,6 +3,7 @@
 <img align="left" alt="MERN" height="50px" width="120px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/MERN-logo.png/640px-MERN-logo.png" />
 
 <br/>
+<br/>
 
 ### Technologies used:
 
