@@ -1,6 +1,6 @@
 ## MERN Stack Expense Tracker App
 
-<img align="left" alt="MERN" height="40px" width="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/MERN-logo.png/640px-MERN-logo.png" />
+<img align="left" alt="MERN" height="80px" width="200px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/MERN-logo.png/640px-MERN-logo.png" />
 
 <br/>
 
