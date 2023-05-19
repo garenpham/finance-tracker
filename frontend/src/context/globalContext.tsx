@@ -18,6 +18,10 @@ interface GlobalContextType {
 	deleteExpense: (id: string) => Promise<void>;
 	expenses: never[];
 	totalExpenses: () => number;
+	totalBalance: () => number;
+	transactionHistory: () => never[];
+	error: null | string;
+	setError: React.Dispatch<React.SetStateAction<null>>;
 }
 
 const GlobalContext = React.createContext<GlobalContextType>({
@@ -31,6 +35,10 @@ const GlobalContext = React.createContext<GlobalContextType>({
 	deleteExpense: async (id: string) => {},
 	expenses: [],
 	totalExpenses: () => 0,
+	totalBalance: () => 0,
+	transactionHistory: () => [],
+	error: null,
+	setError: () => {},
 });
 
 export const GlobalProvider = ({ children }: Props) => {
@@ -112,6 +120,18 @@ export const GlobalProvider = ({ children }: Props) => {
 		return totalExpenses;
 	};
 
+	const totalBalance = () => {
+		return totalIncomes() - totalExpenses();
+	};
+
+	const transactionHistory = () => {
+		const history = [...incomes, ...expenses];
+		history.sort((a: IncomeExpensesType, b: IncomeExpensesType) => {
+			return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+		});
+		return history.slice(0, 4);
+	};
+
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -125,6 +145,10 @@ export const GlobalProvider = ({ children }: Props) => {
 				expenses,
 				deleteExpense,
 				totalExpenses,
+				totalBalance,
+				transactionHistory,
+				error,
+				setError,
 			}}>
 			{children}
 		</GlobalContext.Provider>

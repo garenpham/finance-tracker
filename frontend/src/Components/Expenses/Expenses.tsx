@@ -5,6 +5,7 @@ import { InnerLayout } from '../../styles/Layouts';
 import ExpensesForm from '../Forms/ExpensesForm';
 import { IncomeExpensesType } from '../Income/Income';
 import Items from '../ItemsList/Items';
+import { boxStyled } from '../../styles/GlobalStyle';
 
 type Props = {};
 
@@ -13,9 +14,7 @@ function Expenses({}: Props) {
 		useGlobalContext();
 
 	useEffect(() => {
-		if (getExpenses) {
-			getExpenses();
-		}
+		getExpenses();
 	}, []);
 
 	return (
@@ -70,11 +69,7 @@ const ExpensesStyled = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background: #fcf6f9;
-		border: var(--primary-border);
-		box-shadow: var(--primary-box-shadow);
-		border-radius: 20px;
-		padding: 1rem;
+		${boxStyled}
 		margin: 1rem 0;
 		font-size: 2rem;
 		gap: 0.5rem;

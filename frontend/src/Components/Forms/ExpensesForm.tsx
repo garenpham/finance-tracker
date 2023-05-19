@@ -10,7 +10,7 @@ import { InputStateType } from './IncomeForm';
 type Props = {};
 
 function ExpensesForm({}: Props) {
-	const { addExpense } = useGlobalContext();
+	const { addExpense, error, setError } = useGlobalContext();
 
 	const [inputState, setInputState] = useState<InputStateType>({
 		title: '',
@@ -35,6 +35,7 @@ function ExpensesForm({}: Props) {
 			} else {
 				setInputState({ ...inputState, [name]: e.target.value });
 			}
+			setError(null);
 		};
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,6 +54,7 @@ function ExpensesForm({}: Props) {
 
 	return (
 		<ExpensesFormStyled onSubmit={handleSubmit}>
+			{error && <p className="error">{error}</p>}
 			<div className="input-control">
 				<input
 					type="text"

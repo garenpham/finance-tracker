@@ -22,6 +22,7 @@ import {
 } from '../../utils/Icons';
 import Button from '../Button/Button';
 import { dateFormat } from '../../utils/dateFormat';
+import { boxStyled } from '../../styles/GlobalStyle';
 
 type Props = {
 	id: string;
@@ -135,11 +136,7 @@ interface StyledProps {
 }
 
 const ItemsStyled = styled.div<StyledProps>`
-	background: #fcf6f9;
-	border: var(--primary-border);
-	box-shadow: var(--primary-box-shadow);
-	border-radius: 20px;
-	padding: 1rem;
+	${boxStyled}
 	margin-bottom: 1rem;
 	display: flex;
 	align-items: center;

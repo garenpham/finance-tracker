@@ -4,6 +4,7 @@ import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/globalContext';
 import IncomeForm from '../Forms/IncomeForm';
 import Items from '../ItemsList/Items';
+import { boxStyled } from '../../styles/GlobalStyle';
 
 type Props = {};
 
@@ -15,16 +16,17 @@ export interface IncomeExpensesType {
 	category: string;
 	description: string;
 	type: string;
+	createdAt: string;
 }
 
 function Income({}: Props) {
 	const { addIncome, incomes, getIncomes, deleteIncome, totalIncomes } =
 		useGlobalContext();
 
+	console.log(incomes);
+
 	useEffect(() => {
-		if (getIncomes) {
-			getIncomes();
-		}
+		getIncomes();
 	}, []);
 
 	return (
@@ -79,11 +81,7 @@ const IncomeStyled = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background: #fcf6f9;
-		border: var(--primary-border);
-		box-shadow: var(--primary-box-shadow);
-		border-radius: 20px;
-		padding: 1rem;
+		${boxStyled}
 		margin: 1rem 0;
 		font-size: 2rem;
 		gap: 0.5rem;

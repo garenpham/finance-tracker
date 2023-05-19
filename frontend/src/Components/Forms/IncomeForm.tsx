@@ -17,7 +17,7 @@ export interface InputStateType {
 }
 
 function IncomeForm({}: Props) {
-	const { addIncome } = useGlobalContext();
+	const { addIncome, error, setError } = useGlobalContext();
 
 	const [inputState, setInputState] = useState<InputStateType>({
 		title: '',
@@ -42,6 +42,7 @@ function IncomeForm({}: Props) {
 			} else {
 				setInputState({ ...inputState, [name]: e.target.value });
 			}
+			setError(null);
 		};
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,6 +61,7 @@ function IncomeForm({}: Props) {
 
 	return (
 		<IncomeFormStyled onSubmit={handleSubmit}>
+			{error && <p className="error">{error}</p>}
 			<div className="input-control">
 				<input
 					type="text"

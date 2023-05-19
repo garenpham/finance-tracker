@@ -32,4 +32,34 @@ export const GlobalStyle = createGlobalStyle`
   h1,h2,h3,h4,h5,h6 {
     color:var(--primary-color);
   }
+
+  .error {
+    color: red;
+    animation: shake 0.5s ease-in-out;
+    @keyframes shake{
+      0%{
+        transform: translateX(0);
+      }
+      25%{
+        transform: translateX(10px);
+      }
+      50%{
+        transform: translateX(-10px);
+      }
+      75%{
+        transform: translateX(10px);
+      }
+      100%{
+        transform: translateX(0px);
+      }
+    }
+  }
+`;
+
+export const boxStyled = `
+	background: #fcf6f9;
+	border: var(--primary-border);
+	box-shadow: var(--primary-box-shadow);
+	border-radius: 20px;
+	padding: 1rem;
 `;

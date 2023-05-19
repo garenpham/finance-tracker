@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../../context/globalContext';
 import { dateFormat } from '../../utils/dateFormat';
 import { IncomeExpensesType } from '../Income/Income';
+import { boxStyled } from '../../styles/GlobalStyle';
 
 type Props = {};
 
@@ -47,6 +48,7 @@ function Chart({}: Props) {
 					}),
 				],
 				backgroundColor: 'green',
+				tension: 0.2,
 			},
 			{
 				label: 'Expenses',
@@ -57,6 +59,7 @@ function Chart({}: Props) {
 					}),
 				],
 				backgroundColor: 'red',
+				tension: 0.2,
 			},
 		],
 	};
@@ -69,11 +72,7 @@ function Chart({}: Props) {
 }
 
 const ChartStyled = styled.div`
-	background: #fcf6f9;
-	border: var(--primary-border);
-	box-shadow: var(--primary-box-shadow);
-	border-radius: 20px;
-	padding: 1rem;
+	${boxStyled}
 	height: 100%;
 `;
 
