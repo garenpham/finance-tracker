@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import styled from 'styled-components';
 import { useGlobalContext } from '../../context/globalContext';
-import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import Button from '../Button/Button';
 import { InputStateType } from './IncomeForm';
 
 type Props = {};
 
 function ExpensesForm({}: Props) {
-	const { addIncome } = useGlobalContext();
+	const { addExpense } = useGlobalContext();
 
 	const [inputState, setInputState] = useState<InputStateType>({
 		title: '',
-		amount: 0,
-		date: new Date(),
+		amount: '',
+		date: null,
 		category: '',
 		description: '',
 	});
@@ -39,9 +39,16 @@ function ExpensesForm({}: Props) {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (addIncome) {
-			addIncome(inputState);
+		if (addExpense) {
+			addExpense(inputState);
 		}
+		setInputState({
+			title: '',
+			amount: '',
+			date: null,
+			category: '',
+			description: '',
+		});
 	};
 
 	return (
@@ -51,7 +58,7 @@ function ExpensesForm({}: Props) {
 					type="text"
 					value={title}
 					name={'title'}
-					placeholder="Salary Title"
+					placeholder="Expense Title"
 					onChange={handleInput('title')}
 				/>
 			</div>
@@ -60,8 +67,9 @@ function ExpensesForm({}: Props) {
 					type="number"
 					value={amount}
 					name={'amount'}
-					placeholder="Salary Amount"
+					placeholder="Expense Amount"
 					onChange={handleInput('amount')}
+					autoComplete="off"
 				/>
 			</div>
 			<div className="input-control">
@@ -73,6 +81,7 @@ function ExpensesForm({}: Props) {
 					onChange={(date) => {
 						date && setInputState({ ...inputState, date: date });
 					}}
+					autoComplete="off"
 				/>
 			</div>
 			<div className="selects input-control">
@@ -87,13 +96,13 @@ function ExpensesForm({}: Props) {
 						disabled>
 						Select Option
 					</option>
-					<option value="salary">Salary</option>
-					<option value="freelancing">Freelancing</option>
-					<option value="investments">Investiments</option>
-					<option value="stocks">Stocks</option>
-					<option value="bitcoin">Bitcoin</option>
-					<option value="bank">Bank Transfer</option>
-					<option value="youtube">Youtube</option>
+					<option value="education">Education</option>
+					<option value="groceries">Groceries</option>
+					<option value="health">Health</option>
+					<option value="subscriptions">Subscriptions</option>
+					<option value="takeaways">Takeaways</option>
+					<option value="clothing">Clothing</option>
+					<option value="travelling">Travelling</option>
 					<option value="other">Other</option>
 				</select>
 			</div>
@@ -110,7 +119,7 @@ function ExpensesForm({}: Props) {
 			</div>
 			<div className="submit-btn">
 				<Button
-					name={'Add Income'}
+					name={'Add Expense'}
 					icon={plus}
 					btnPad={'.8rem 1.6rem'}
 					btnRad={'30px'}

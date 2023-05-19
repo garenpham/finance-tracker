@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/globalContext';
 import IncomeForm from '../Forms/IncomeForm';
-import IncomeItem from '../IncomeItem/IncomeItem';
+import Items from '../ItemsList/Items';
 
 type Props = {};
 
@@ -51,7 +51,7 @@ function Income({}: Props) {
 									description,
 								} = income;
 								return (
-									<IncomeItem
+									<Items
 										key={_id}
 										id={_id}
 										title={title}

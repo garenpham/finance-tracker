@@ -11,7 +11,11 @@ const PORT = process.env.PORT;
 
 //middlewares
 app.use(express.json());
-app.use(cors());
+app.use(
+	cors({
+		origin: process.env.CLIENT_URL,
+	}),
+);
 
 //routes
 readdirSync('./routes').map((route) =>

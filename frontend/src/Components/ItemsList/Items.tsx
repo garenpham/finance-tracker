@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import {
 	dollar,
@@ -22,6 +21,7 @@ import {
 	circle,
 } from '../../utils/Icons';
 import Button from '../Button/Button';
+import { dateFormat } from '../../utils/dateFormat';
 
 type Props = {
 	id: string;
@@ -35,7 +35,7 @@ type Props = {
 	type: string;
 };
 
-function IncomeItem({
+function Items({
 	id,
 	title,
 	amount,
@@ -46,7 +46,7 @@ function IncomeItem({
 	indicatorColor,
 	type,
 }: Props) {
-	const categoryIcon = () => {
+	const incomeCatIcon = () => {
 		switch (category) {
 			case 'salary':
 				return money;
@@ -93,9 +93,9 @@ function IncomeItem({
 	};
 
 	return (
-		<IncomeItemStyled indicator={indicatorColor}>
+		<ItemsStyled indicator={indicatorColor}>
 			<div className="icon">
-				{type === 'expense' ? expenseCatIcon() : categoryIcon()}
+				{type === 'expense' ? expenseCatIcon() : incomeCatIcon()}
 			</div>
 			<div className="content">
 				<h5>{title}</h5>
@@ -105,7 +105,7 @@ function IncomeItem({
 							{dollar} {amount}
 						</p>
 						<p>
-							{calendar} {date}
+							{calendar} {dateFormat(date)}
 						</p>
 						<p>
 							{comment}
@@ -126,7 +126,7 @@ function IncomeItem({
 					</div>
 				</div>
 			</div>
-		</IncomeItemStyled>
+		</ItemsStyled>
 	);
 }
 
@@ -134,7 +134,7 @@ interface StyledProps {
 	indicator?: string;
 }
 
-const IncomeItemStyled = styled.div<StyledProps>`
+const ItemsStyled = styled.div<StyledProps>`
 	background: #fcf6f9;
 	border: var(--primary-border);
 	box-shadow: var(--primary-box-shadow);
@@ -201,4 +201,4 @@ const IncomeItemStyled = styled.div<StyledProps>`
 	}
 `;
 
-export default IncomeItem;
+export default Items;

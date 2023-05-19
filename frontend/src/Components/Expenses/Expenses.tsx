@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
-import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/globalContext';
-import IncomeForm from '../Forms/IncomeForm';
-import IncomeItem from '../IncomeItem/IncomeItem';
+import { InnerLayout } from '../../styles/Layouts';
+import ExpensesForm from '../Forms/ExpensesForm';
 import { IncomeExpensesType } from '../Income/Income';
+import Items from '../ItemsList/Items';
 
 type Props = {};
 
 function Expenses({}: Props) {
-	const {
-		addIncome,
-		incomes,
-		getIncomes,
-		deleteIncome,
-		totalIncomes: totalIncome,
-	} = useGlobalContext();
+	const { expenses, getExpenses, deleteExpense, totalExpenses } =
+		useGlobalContext();
 
 	useEffect(() => {
-		if (getIncomes) {
-			getIncomes();
+		if (getExpenses) {
+			getExpenses();
 		}
 	}, []);
 
@@ -27,16 +22,16 @@ function Expenses({}: Props) {
 		<ExpensesStyled>
 			<InnerLayout>
 				<h1>Expenses</h1>
-				<h2 className="total-income">
-					Total Expense: <span>${totalIncome()}</span>
+				<h2 className="total-expenses">
+					Total Expense: <span>${totalExpenses()}</span>
 				</h2>
-				<div className="income-content">
+				<div className="expense-content">
 					<div className="form-container">
-						<IncomeForm />
+						<ExpensesForm />
 					</div>
-					<div className="incomes">
-						{incomes &&
-							incomes.map((income: IncomeExpensesType) => {
+					<div className="expenses">
+						{expenses &&
+							expenses.map((expense: IncomeExpensesType) => {
 								const {
 									_id,
 									title,
@@ -45,9 +40,9 @@ function Expenses({}: Props) {
 									date,
 									category,
 									description,
-								} = income;
+								} = expense;
 								return (
-									<IncomeItem
+									<Items
 										key={_id}
 										id={_id}
 										title={title}
@@ -57,7 +52,7 @@ function Expenses({}: Props) {
 										category={category}
 										description={description}
 										indicatorColor="var(--color-green)"
-										deleteItem={deleteIncome}
+										deleteItem={deleteExpense}
 									/>
 								);
 							})}
@@ -71,7 +66,7 @@ function Expenses({}: Props) {
 const ExpensesStyled = styled.div`
 	display: flex;
 	overflow: auto;
-	.total-income {
+	.total-expenses {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -89,10 +84,10 @@ const ExpensesStyled = styled.div`
 			color: var(--color-green);
 		}
 	}
-	.income-content {
+	.expense-content {
 		display: flex;
 		gap: 2rem;
-		.incomes {
+		.expenses {
 			flex: 1;
 		}
 	}

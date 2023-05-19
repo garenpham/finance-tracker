@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import styled from 'styled-components';
 import { useGlobalContext } from '../../context/globalContext';
-import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import Button from '../Button/Button';
 
 type Props = {};
 
 export interface InputStateType {
 	title: string;
-	amount: number;
-	date: Date;
+	amount: number | string;
+	date: Date | null;
 	category: string;
 	description: string;
 }
@@ -21,8 +21,8 @@ function IncomeForm({}: Props) {
 
 	const [inputState, setInputState] = useState<InputStateType>({
 		title: '',
-		amount: 0,
-		date: new Date(),
+		amount: '',
+		date: null,
 		category: '',
 		description: '',
 	});
@@ -49,6 +49,13 @@ function IncomeForm({}: Props) {
 		if (addIncome) {
 			addIncome(inputState);
 		}
+		setInputState({
+			title: '',
+			amount: '',
+			date: null,
+			category: '',
+			description: '',
+		});
 	};
 
 	return (
@@ -69,6 +76,7 @@ function IncomeForm({}: Props) {
 					name={'amount'}
 					placeholder="Salary Amount"
 					onChange={handleInput('amount')}
+					autoComplete="off"
 				/>
 			</div>
 			<div className="input-control">
@@ -80,6 +88,7 @@ function IncomeForm({}: Props) {
 					onChange={(date) => {
 						date && setInputState({ ...inputState, date: date });
 					}}
+					autoComplete="off"
 				/>
 			</div>
 			<div className="selects input-control">
