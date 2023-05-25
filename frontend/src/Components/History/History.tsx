@@ -44,7 +44,7 @@ const HistoryStyled = styled.div`
 	flex-direction: column;
 	gap: 1rem;
 	.history-item {
-		background: #fcf6f9;
+		background: var(--box-color);
 		border: var(--primary-border);
 		box-shadow: var(--primary-box-shadow);
 		border-radius: 20px;

@@ -57,7 +57,7 @@ const AppStyled = styled.div<AppStyledProps>`
 	position: relative;
 	main {
 		flex: 1;
-		background: rgba(252, 246, 249, 0.78);
+		background: var(--background-color);
 		border: 3px solid #fff;
 		backdrop-filter: blur(4.5px);
 		border-radius: 32px;

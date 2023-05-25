@@ -20,6 +20,8 @@ export const GlobalStyle = createGlobalStyle`
     --color-gray: #aaa;
     --color-accent: #f56692;
     --color-delete: #ff0000;
+    --background-color: rgba(252, 246, 249, 0.78);
+    --box-color: #fcf6f9;
   }
 
   body{
@@ -57,7 +59,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const boxStyled = `
-	background: #fcf6f9;
+	background: var(--box-color);
 	border: var(--primary-border);
 	box-shadow: var(--primary-box-shadow);
 	border-radius: 20px;

@@ -45,9 +45,9 @@ function Navigation({ active, setActive }: Props) {
 
 const NavStyled = styled.nav`
 	padding: 2rem 1.5rem;
-	width: 374px;
+	width: 20%;
 	height: 100%;
-	background: rgba(252, 246, 249, 0.78);
+	background: var(--background-color);
 	border: 3px solid #fff;
 	backdrop-filter: blur(4.5px);
 	border-radius: 32px;
